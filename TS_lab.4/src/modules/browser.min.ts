@@ -1,0 +1,28 @@
+import { BrowserInfo } from '../types/browserInfo';
+const browser: BrowserInfo = {
+  name: null,
+  version: null,
+  os: null,
+  osVersion: null,
+  touch: null,
+  mobile: null,
+  _canUse: null,
+  canUse(feature: string): boolean {
+    if (!this._canUse) this._canUse = document.createElement('div');
+    return feature in this._canUse.style;
+  },
+  init() {
+    const userAgent = navigator.userAgent;
+    const browsers = [
+      ['firefox', /Firefox\/([0-9\.]+)/], ['chrome', /Chrome\/([0-9\.]+)/]
+    ];
+    for (const [name, regex] of browsers) {
+      const match = userAgent.match(regex);
+      if (match) {
+        this.name = name; this.version = parseFloat(match[1]); break;
+      }
+    }
+  }
+};
+browser.init();
+export default browser;
