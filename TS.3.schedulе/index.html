@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Практична робота №3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #4a4a4a;
+        }
+
+        h3 {
+            margin-top: 30px;
+            color: #333;
+        }
+
+        input,
+        select,
+        button {
+            margin: 5px 0;
+            padding: 10px;
+            width: 200px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #scheduleList {
+            margin-top: 20px;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #scheduleList li {
+            padding: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Університетський розклад</h1>
+
+    <!-- Додавання професора -->
+    <section>
+        <h3>Додавання професора</h3>
+        <input type="text" id="professorName" placeholder="Ім'я професора" />
+        <input type="text" id="professorDepartment" placeholder="Кафедра" />
+        <button onclick="addProfessor()">Додати професора</button>
+        <div id="professorMessage"></div>
+    </section>
+
+    <!-- Додавання курсу -->
+    <section>
+        <h3>Додавання курсу</h3>
+        <input type="text" id="courseName" placeholder="Назва курсу" />
+        <select id="courseType">
+            <option value="Lecture">Лекція</option>
+            <option value="Seminar">Семінар</option>
+            <option value="Lab">Лабораторна</option>
+            <option value="Practice">Практика</option>
+        </select>
+        <button onclick="addCourse()">Додати курс</button>
+        <div id="courseMessage"></div>
+    </section>
+
+    <!-- Додавання аудиторії -->
+    <section>
+        <h3>Додавання аудиторії</h3>
+        <input type="text" id="classroomNumber" placeholder="Номер аудиторії" />
+        <input type="number" id="classroomCapacity" placeholder="Місткість" />
+        <input type="checkbox" id="classroomProjector" /> Є проектор?
+        <button onclick="addClassroom()">Додати аудиторію</button>
+        <div id="classroomMessage"></div>
+    </section>
+
+    <!-- Додавання уроку -->
+    <section>
+        <h3>Додавання уроку</h3>
+        <input type="number" id="lessonCourseId" placeholder="ID курсу" />
+        <input type="number" id="lessonProfessorId" placeholder="ID професора" />
+        <input type="text" id="lessonClassroomNumber" placeholder="Номер аудиторії" />
+        <select id="lessonDayOfWeek">
+            <option value="Monday">Понеділок</option>
+            <option value="Tuesday">Вівторок</option>
+            <option value="Wednesday">Середа</option>
+            <option value="Thursday">Четвер</option>
+            <option value="Friday">П'ятниця</option>
+        </select>
+        <select id="lessonTimeSlot">
+            <option value="8:30-10:00">8:30-10:00</option>
+            <option value="10:15-11:45">10:15-11:45</option>
+            <option value="12:15-13:45">12:15-13:45</option>
+            <option value="14:00-15:30">14:00-15:30</option>
+            <option value="15:45-17:15">15:45-17:15</option>
+        </select>
+        <button onclick="addLesson()">Додати урок</button>
+        <div id="lessonMessage"></div>
+    </section>
+
+    <!-- Зміна аудиторії для уроку -->
+    <section>
+        <h3>Зміна аудиторії уроку</h3>
+        <input type="number" id="lessonIdToChange" placeholder="ID уроку" />
+        <input type="text" id="newClassroomNumber" placeholder="Новий номер аудиторії" />
+        <button onclick="reassignClassroom()">Змінити аудиторію</button>
+        <div id="reassignMessage"></div>
+    </section>
+
+    <!-- Скасування заняття -->
+    <section>
+        <h3>Скасування заняття</h3>
+        <input type="number" id="lessonIdToCancel" placeholder="ID уроку" />
+        <button onclick="cancelLesson()">Скасувати заняття</button>
+        <div id="cancelMessage"></div>
+    </section>
+
+    <!-- Оновлення розкладу (виведення на екран) -->
+    <section>
+        <h3>Оновлення розкладу</h3>
+        <button onclick="updateSchedule()">Оновити розклад</button>
+        <ul id="scheduleList"></ul>
+    </section>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
